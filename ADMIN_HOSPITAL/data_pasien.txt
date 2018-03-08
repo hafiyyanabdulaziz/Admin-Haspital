@@ -1,0 +1,8 @@
+nama:HafiyyanAbdulAziz  tempat:Bontang  tanggal:20  bulan:1 tahun:1999  jns_kelamin:L  darah:B  tinggi:165  berat:55  alamat:Bekasi
+nama:Haryanto  tempat:Jakarta  tanggal:20  bulan:2 tahun:1999  jns_kelamin:L  darah:A  tinggi:166  berat:66  alamat:Jakarta
+nama:Adel  tempat:Bekasi  tanggal:20  bulan:6 tahun:2000  jns_kelamin:P  darah:O  tinggi:155  berat:55  alamat:Jakarta
+nama:Joko  tempat:Bandung  tanggal:30  bulan:1 tahun:1998  jns_kelamin:L  darah:A  tinggi:170  berat:65  alamat:BuahBatu
+nama:Azizah  tempat:Bali  tanggal:19  bulan:3 tahun:2000  jns_kelamin:P  darah:AB  tinggi:160  berat:45  alamat:Yogyakarta
+nama:Angga  tempat:Jambi  tanggal:3  bulan:11 tahun:2000  jns_kelamin:L  darah:O  tinggi:177  berat:66  alamat:Cimahi
+nama:Rendra  tempat:Cilacap  tanggal:20  bulan:4 tahun:1999  jns_kelamin:L  darah:J  tinggi:154  berat:55  alamat:Bandung
+nama:Habib  tempat:Medan  tanggal:3  bulan:11 tahun:1999  jns_kelamin:L  darah:J  tinggi:155  berat:66  alamat:Bogor
