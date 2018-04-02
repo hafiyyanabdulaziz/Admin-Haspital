@@ -1,12 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//DEKLARASi
+int life=4,i=0;
+char user[9999],pass[9999],n,aa[5]="a0";
+struct pasien{
+        char nama[30],ayah[30],ibu[30],darah[5],hp[30],alamat[40],jns_kelamin,tempat_lahir[30];
+        int tinggi,berat,tanggal,bulan,tahun;
+}p[900];
+FILE *pasien;
+/*===========KETERANGAN==========
+    life: untuk membuat coundown ketika username dan password tidak sesuai
+    user: menyimpan data username
+    pass: menyimpan data password
+    struct pasien: menyimpan semua data pasien
+    i: melakukan penjumlahan perhitungan
+    n: untuk menyimpan data y/t ketika input data pasien
+    FILE pasien: menyimpan data pasien di file
+===============================*/
+
 //PLAY
 int main()
 {
     system("color a0");
-    char user[9999],pass[9999];
-    int life=4;
     intro();
     login:
         printf("\t\t\t\t\t\t  Username: ");gets(user);
@@ -30,13 +46,6 @@ int main()
 
 void isi_data_pasien() //Input data pasien
 {
-    struct pasien{
-        char nama[30],ayah[30],ibu[30],darah[5],hp[30],alamat[40],jns_kelamin,tempat_lahir[30];
-        int tinggi,berat,tanggal,bulan,tahun;
-    }p[900];
-    int i=0,j,k;
-    char n[10];
-    FILE *pasien;
     pasien=fopen("data_pasien.txt", "a");
     do{
         intro();
@@ -48,13 +57,13 @@ void isi_data_pasien() //Input data pasien
         printf("\t\t\t\t\t              Bulan Lahir: ");scanf("%d",&p[i].bulan);fflush(stdin);
         printf("\t\t\t\t\t              Tahun Lahir: ");scanf("%d",&p[i].tahun);fflush(stdin);
         printf("\t\t\t\t\t     Masukkan Jenis Kelamin(L/P)? ");scanf("%c",&p[i].jns_kelamin);fflush(stdin);
-        printf("\t\t\t\t\t     Masukkan Golongan Darah (A/B/AB/O)? ");gets(p[i].darah);
+        printf("\t\t\t\t\t     Masukkan Golongan Darah (A/B/AB/O)? ");scanf("%s",&p[i].darah);fflush(stdin);
         printf("\t\t\t\t\t     Masukkan Tinggi Badan (cm)= ");scanf("%d",&p[i].tinggi);fflush(stdin);
         printf("\t\t\t\t\t     Masukkan Berat Badan (kg)= ");scanf("%d",&p[i].berat);fflush(stdin);
         printf("\t\t\t\t\t     Masukkan Alamat: ");gets(p[i].alamat);
-        printf("\t\t\t\tAPAKAH INGIN MEMASUKKAN DATA PASIEN LAGI (y/t)? ");gets(n);
-        fprintf(pasien,"nama:%s  tempat:%s  tanggal:%d  bulan:%d tahun:%d  jns_kelamin:%c  darah:%c  tinggi:%d  berat:%d  alamat:%s\n",p[i].nama,p[i].tempat_lahir,p[i].tanggal,p[i].bulan,p[i].tahun,p[i].jns_kelamin,p[i].darah,p[i].tinggi,p[i].berat,p[i].alamat);
-    } while (strcmp(n,"y")==0);
+        printf("\t\t\t\tAPAKAH INGIN MEMASUKKAN DATA PASIEN LAGI (y/t)? ");scanf("%c",&n);fflush(stdin);
+        fprintf(pasien,"nama:%s  tempat:%s  tanggal:%d  bulan:%d tahun:%d  jns_kelamin:%c  darah:%s  tinggi:%d  berat:%d  alamat:%s\n",p[i].nama,p[i].tempat_lahir,p[i].tanggal,p[i].bulan,p[i].tahun,p[i].jns_kelamin,p[i].darah,p[i].tinggi,p[i].berat,p[i].alamat);
+    } while (n=='y'||n=='Y');
     fclose(pasien);
     main_menu();
 }
@@ -62,12 +71,6 @@ void isi_data_pasien() //Input data pasien
 void lihat_data_pasien() //melihat data pasien dari file
 {
     system("cls");
-    struct pasien{
-        char nama[30],ayah[30],ibu[30],darah[5],hp[30],alamat[40],jns_kelamin,tempat_lahir[30];
-        int tinggi,berat,tanggal,bulan,tahun;
-    }p[900];
-    int i=0;
-    FILE *pasien;
     pasien=fopen("data_pasien.txt","r");
     if(!pasien){  //cek apakah filenya ada atau tidak
         printf("FILE TIDAK DITEMUKAN");
@@ -137,7 +140,6 @@ void main_menu() //menu setelah login
 {
     int pil=0;
     menu:
-        //system("cls");
         intro();
         printf("\t\t\t\t\t\t    MAIN MENU\n");
         printf("\t\t\t\t\t    ________________________\n");
