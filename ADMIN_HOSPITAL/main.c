@@ -2,12 +2,13 @@
 #include <stdlib.h>
 
 //DEKLARASi
-int life=4,i=0;
-char user[9999],pass[9999],n,aa[5]="a0";
+int life=4,i=0,warna=1;
+char user[9999],pass[9999],n;
 struct pasien{
         char nama[30],ayah[30],ibu[30],darah[5],hp[30],alamat[40],jns_kelamin,tempat_lahir[30];
         int tinggi,berat,tanggal,bulan,tahun;
 }p[900];
+int pil;
 FILE *pasien;
 /*===========KETERANGAN==========
     life: untuk membuat coundown ketika username dan password tidak sesuai
@@ -22,7 +23,14 @@ FILE *pasien;
 //PLAY
 int main()
 {
-    system("color a0");
+    switch(warna){
+            case 1 : system("color a0");break;
+            case 2 : system("color b0");break;
+            case 3 : system("color c0");break;
+            case 4 : system("color d0");break;
+            case 5 : system("color e0");break;
+            case 6 : system("color f0");break;
+    }
     intro();
     login:
         printf("\t\t\t\t\t\t  Username: ");gets(user);
@@ -138,7 +146,7 @@ void readPass(char *temp) //Menyamarkan Password
 
 void main_menu() //menu setelah login
 {
-    int pil=0;
+    pil=0;
     menu:
         intro();
         printf("\t\t\t\t\t\t    MAIN MENU\n");
@@ -149,14 +157,68 @@ void main_menu() //menu setelah login
         printf("\t\t\t\t\t   | 2  | Lihat Data Pasien |\n");
         printf("\t\t\t\t\t   | 3  |      Log Out      |\n");
         printf("\t\t\t\t\t   | 4  |      Keluar       |\n");
+        printf("\t\t\t\t\t   | 5  |    Pengaturan     |\n");
         printf("\t\t\t\t\t    ---- -------------------\n");
-        if(pil>4) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
+        if(pil>5) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
         printf("Masukkan No. Pilihan= ");scanf("%d",&pil);fflush(stdin);
         switch(pil){
             case 1 : isi_data_pasien();break;
             case 2 : lihat_data_pasien();break;
             case 3 : main();break;
             case 4 : keluar();break;
+            case 5 : pengaturan();break;
+            default : goto menu;
+        }
+}
+
+void pengaturan()
+{
+    pil=0;
+    menu:
+        intro();
+        printf("\t\t\t\t\t\t    PENGATURAN\n");
+        printf("\t\t\t\t\t    ___________________________\n");
+        printf("\t\t\t\t\t   | No |        Pilihan       |\n");
+        printf("\t\t\t\t\t   |---------------------------|\n");
+        printf("\t\t\t\t\t   | 1  |   Ganti Background   |\n");
+        printf("\t\t\t\t\t   | 2  | kembali ke Main Menu |\n");
+        printf("\t\t\t\t\t    ---- ----------------------\n");
+        if(pil>2) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
+        printf("Masukkan No. Pilihan= ");scanf("%d",&pil);fflush(stdin);
+        switch(pil){
+            case 1 : background();break;
+            case 2 : main_menu();break;
+            default : goto menu;
+        }
+}
+
+void background()
+{
+    pil=0;
+    menu:
+        intro();
+        printf("\t\t\t\t\t\t    GANTI BACKGROUND\n");
+        printf("\t\t\t\t\t    ______________________\n");
+        printf("\t\t\t\t\t   | No |     Pilihan     |\n");
+        printf("\t\t\t\t\t   |----------------------|\n");
+        printf("\t\t\t\t\t   | 1  |      Hijau      |\n");
+        printf("\t\t\t\t\t   | 2  |      Aqua       |\n");
+        printf("\t\t\t\t\t   | 3  |      Merah      |\n");
+        printf("\t\t\t\t\t   | 4  |      Ungu       |\n");
+        printf("\t\t\t\t\t   | 5  |     Kuning      |\n");
+        printf("\t\t\t\t\t   | 6  |      Putih      |\n");
+        printf("\t\t\t\t\t   | 7  |     Kembali     |\n");
+        printf("\t\t\t\t\t    ---- -----------------\n");
+        if(pil>7) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
+        printf("Masukkan No. Pilihan= ");scanf("%d",&pil);fflush(stdin);
+        switch(pil){
+            case 1 : warna=1;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
+            case 2 : warna=2;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
+            case 3 : warna=3;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
+            case 4 : warna=4;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
+            case 5 : warna=5;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
+            case 6 : warna=6;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
+            case 7 : pengaturan();break;
             default : goto menu;
         }
 }
