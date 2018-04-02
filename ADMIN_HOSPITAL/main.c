@@ -4,7 +4,7 @@
 //PLAY
 int main()
 {
-    system("color f0");
+    system("color a0");
     char user[9999],pass[9999];
     int life=4;
     intro();
@@ -23,9 +23,9 @@ int main()
             else{
                 printf("\t\t\t\t\t  ANDA SUDAH MELEBIHI BATAS LOGIN");
                 getch();
+                keluar();
             }
         }
-        return 0;
 }
 
 void isi_data_pasien() //Input data pasien
@@ -85,7 +85,8 @@ void lihat_data_pasien() //melihat data pasien dari file
         }
         printf("   --------------------------------------------------------------------------------------------------------\n");
         fclose(pasien);
-        getchar();
+        printf("Press any key to Main Menu.");
+        getch();
         main_menu();
     }
 }
@@ -138,21 +139,33 @@ void main_menu() //menu setelah login
     menu:
         //system("cls");
         intro();
-        if(pil>2) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
-        printf("\t\t\t\t\t\t    MAIN MENU\n\n");
+        printf("\t\t\t\t\t\t    MAIN MENU\n");
         printf("\t\t\t\t\t    ________________________\n");
         printf("\t\t\t\t\t   | No |       Pilihan     |\n");
         printf("\t\t\t\t\t   |------------------------|\n");
         printf("\t\t\t\t\t   | 1  |  Isi Data Pasien  |\n");
         printf("\t\t\t\t\t   | 2  | Lihat Data Pasien |\n");
         printf("\t\t\t\t\t   | 3  |      Log Out      |\n");
-        printf("\t\t\t\t\t   |____|___________________|\n\n");
+        printf("\t\t\t\t\t   | 4  |      Keluar       |\n");
+        printf("\t\t\t\t\t    ---- -------------------\n");
+        if(pil>4) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
         printf("Masukkan No. Pilihan= ");scanf("%d",&pil);fflush(stdin);
         switch(pil){
             case 1 : isi_data_pasien();break;
             case 2 : lihat_data_pasien();break;
             case 3 : main();break;
+            case 4 : keluar();break;
             default : goto menu;
         }
 }
 
+void keluar()
+{
+    system("cls");
+    printf("THANKS FOR USING\n");
+    printf("Created By:\n");
+    printf("1. Hafiyyan Abdul Aziz\n");
+    printf("2. Taufiq Mulya Wijaya\n");
+    printf("3. Muhammad Stefani");
+    return 0;
+}

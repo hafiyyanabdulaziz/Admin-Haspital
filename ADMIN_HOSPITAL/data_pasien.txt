@@ -6,4 +6,6 @@ nama:Azizah  tempat:Bali  tanggal:19  bulan:3 tahun:2000  jns_kelamin:P  darah:A
 nama:Angga  tempat:Jambi  tanggal:3  bulan:11 tahun:2000  jns_kelamin:L  darah:O  tinggi:177  berat:66  alamat:Cimahi
 nama:Rendra  tempat:Cilacap  tanggal:20  bulan:4 tahun:1999  jns_kelamin:L  darah:J  tinggi:154  berat:55  alamat:Bandung
 nama:Habib  tempat:Medan  tanggal:3  bulan:11 tahun:1999  jns_kelamin:L  darah:J  tinggi:155  berat:66  alamat:Bogor
-nama:Habibah  tempat:Medan  tanggal:3  bulan:11 tahun:1999  jns_kelamin:L  darah:J  tinggi:155  berat:66  alamat:Bogor
+
+nama:insan  tempat:jakarta  tanggal:20  bulan:8 tahun:2000  jns_kelamin:L  darah::  tinggi:170  berat:77  alamat:Asrama
+nama:mimi  tempat:mamaaja  tanggal:12  bulan:7 tahun:1998  jns_kelamin:p  darah::  tinggi:170  berat:55  alamat:telkom
