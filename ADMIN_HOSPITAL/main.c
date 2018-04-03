@@ -2,12 +2,12 @@
 #include <stdlib.h>
 
 //DEKLARASi
-int life=4,i=0,warna,pil;
+int life=4,i=0,warna,pil,x,y,Imax;
 char user[9999],pass[9999],n,pengguna[999],sandi[999];
 struct pasien{
         char nama[30],ayah[30],ibu[30],darah[5],hp[30],alamat[40],jns_kelamin,tempat_lahir[30];
         int tinggi,berat,tanggal,bulan,tahun;
-}p[900];
+}p[900],simpan;
 FILE *pasien, *userpass, *color;
 /*===========KETERANGAN==========
     life: untuk membuat coundown ketika username dan password tidak sesuai
@@ -94,11 +94,13 @@ void isi_data_pasien() //Input data pasien
         fprintf(pasien,"nama:%s  tempat:%s  tanggal:%d  bulan:%d tahun:%d  jns_kelamin:%c  darah:%s  tinggi:%d  berat:%d  alamat:%s\n",p[i].nama,p[i].tempat_lahir,p[i].tanggal,p[i].bulan,p[i].tahun,p[i].jns_kelamin,p[i].darah,p[i].tinggi,p[i].berat,p[i].alamat);
     } while (n=='y'||n=='Y');
     fclose(pasien);
+    urut_pasien();
     main_menu();
 }
 
 void lihat_data_pasien() //melihat data pasien dari file
 {
+    i=0;
     system("cls");
     pasien=fopen("data_pasien.txt","r");
     if(!pasien){  //cek apakah filenya ada atau tidak
@@ -136,6 +138,29 @@ void intro() //kop rumah sakit
     printf("\t\t\t\t\t\tSK 41-01 Hospital\n\n");
 }
 
+void urut_pasien()
+{
+    i=0;
+    pasien=fopen("data_pasien.txt","r");
+    while(!feof(pasien)){
+            i++;
+            fscanf(pasien,"nama:%s  tempat:%s  tanggal:%d  bulan:%d tahun:%d  jns_kelamin:%c  darah:%s  tinggi:%d  berat:%d  alamat:%s\n",&p[i].nama,&p[i].tempat_lahir,&p[i].tanggal,&p[i].bulan,&p[i].tahun,&p[i].jns_kelamin,&p[i].darah,&p[i].tinggi,&p[i].berat,&p[i].alamat);
+    }
+    for(x=1;x<i-1;x++){
+        Imax=x;
+        for(y=x+1;y<=i;y++)
+            if(strcmp(p[Imax].nama,p[y].nama)>0)
+                Imax=y;
+        simpan=p[Imax];
+        p[Imax]=p[x];
+        p[x]=simpan;
+     }
+     pasien=fopen("data_pasien.txt", "w");
+    for(x=1;x<=i;x++){
+        fprintf(pasien,"nama:%s  tempat:%s  tanggal:%d  bulan:%d tahun:%d  jns_kelamin:%c  darah:%s  tinggi:%d  berat:%d  alamat:%s\n",p[x].nama,p[x].tempat_lahir,p[x].tanggal,p[x].bulan,p[x].tahun,p[x].jns_kelamin,p[x].darah,p[x].tinggi,p[x].berat,p[x].alamat);
+    }
+    fclose(pasien);
+}
 
 void readPass(char *temp) //Menyamarkan Password
 {
@@ -202,15 +227,33 @@ void pengaturan()
         printf("\t\t\t\t\t   | No |        Pilihan       |\n");
         printf("\t\t\t\t\t   |---------------------------|\n");
         printf("\t\t\t\t\t   | 1  |   Ganti Background   |\n");
-        printf("\t\t\t\t\t   | 2  | kembali ke Main Menu |\n");
+        printf("\t\t\t\t\t   | 2  |   Ganti User & Pass  |\n");
+        printf("\t\t\t\t\t   | 3  | kembali ke Main Menu |\n");
         printf("\t\t\t\t\t    ---- ----------------------\n");
-        if(pil>2) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
+        if(pil>3) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
         printf("Masukkan No. Pilihan= ");scanf("%d",&pil);fflush(stdin);
         switch(pil){
             case 1 : background();break;
-            case 2 : main_menu();break;
+            case 2 : gantiup();break;
+            case 3 : main_menu();break;
             default : goto menu;
         }
+}
+
+void gantiup()
+{
+    userpass=fopen("userpass.txt", "w");
+    fscanf(userpass,"%s %s",&pengguna,&sandi);
+    intro();
+    printf("\t\t\t\tUsername Lama: %s | Password Lama: %s\n",pengguna,sandi);
+    printf("\t\t\t\t===========================================\n");
+    printf("\t\t\t\tMasukkan Username Baru: ");gets(pengguna);
+    printf("\t\t\t\tMasukkan Password Baru: ");gets(sandi);
+    fprintf(userpass,"%s %s",pengguna,sandi);
+    fclose(userpass);
+    printf("\t\t\t\tGANTI USERNAME DAN PASSWORD BERHASIL\nPress any key to Login.");
+    getch();
+    main();
 }
 
 void background()
