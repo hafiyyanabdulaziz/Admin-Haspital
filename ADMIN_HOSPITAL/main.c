@@ -2,14 +2,13 @@
 #include <stdlib.h>
 
 //DEKLARASi
-int life=4,i=0,warna=1;
-char user[9999],pass[9999],n;
+int life=4,i=0,warna,pil;
+char user[9999],pass[9999],n,pengguna[999],sandi[999];
 struct pasien{
         char nama[30],ayah[30],ibu[30],darah[5],hp[30],alamat[40],jns_kelamin,tempat_lahir[30];
         int tinggi,berat,tanggal,bulan,tahun;
 }p[900];
-int pil;
-FILE *pasien;
+FILE *pasien, *userpass, *color;
 /*===========KETERANGAN==========
     life: untuk membuat coundown ketika username dan password tidak sesuai
     user: menyimpan data username
@@ -23,6 +22,7 @@ FILE *pasien;
 //PLAY
 int main()
 {
+    start();
     switch(warna){
             case 1 : system("color a0");break;
             case 2 : system("color b0");break;
@@ -35,7 +35,7 @@ int main()
     login:
         printf("\t\t\t\t\t\t  Username: ");gets(user);
         printf("\t\t\t\t\t\t  Password: ");readPass(pass);
-        if ((strcmp(user,"admin")==0)&&(strcmp(pass,"admin")==0)){
+        if ((strcmp(user,pengguna)==0)&&(strcmp(pass,sandi)==0)){
             main_menu();
         }
         else{
@@ -50,6 +50,27 @@ int main()
                 keluar();
             }
         }
+}
+
+void start()
+{
+    userpass=fopen("userpass.txt","r");
+    color=fopen("colour.txt","r");
+    if(!userpass){  //cek apakah filenya ada atau tidak
+        fscanf(color,"%d",&warna);
+        printf("===SELAMAT DATANG===\nSILAHKAN REGISTRASI TERLEBIH DAHULU!\nUsername: ");gets(pengguna);
+        printf("Password: ");gets(sandi);
+        userpass=fopen("userpass.txt", "w");
+        fprintf(userpass,"%s %s",pengguna,sandi);
+        printf("PENDAFTARAN BERHASI\nPress any key to Login.");
+        getch();
+    }
+    else{
+        fscanf(userpass,"%s %s",&pengguna,&sandi);
+        fscanf(color,"%d",&warna);
+    }
+    fclose(userpass);
+    fclose(color);
 }
 
 void isi_data_pasien() //Input data pasien
@@ -212,15 +233,21 @@ void background()
         if(pil>7) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
         printf("Masukkan No. Pilihan= ");scanf("%d",&pil);fflush(stdin);
         switch(pil){
-            case 1 : warna=1;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
-            case 2 : warna=2;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
-            case 3 : warna=3;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
-            case 4 : warna=4;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
-            case 5 : warna=5;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
-            case 6 : warna=6;printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");getch();main();break;
+            case 1 : warna=1;break;
+            case 2 : warna=2;break;
+            case 3 : warna=3;break;
+            case 4 : warna=4;break;
+            case 5 : warna=5;break;
+            case 6 : warna=6;break;
             case 7 : pengaturan();break;
             default : goto menu;
         }
+        color=fopen("colour.txt", "w");
+        fprintf(color,"%d",warna);
+        fclose(color);
+        printf("\nGANTI BACKGROUND BERHASIL\nPress any key to Login.");
+        getch();
+        main();
 }
 
 void keluar()
