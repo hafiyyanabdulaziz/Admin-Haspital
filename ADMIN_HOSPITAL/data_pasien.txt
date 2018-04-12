@@ -1,17 +1,11 @@
-nama:Adel  tempat:Bekasi  tanggal:20  bulan:6 tahun:2000  jns_kelamin:P  darah:O  tinggi:155  berat:55  alamat:Jakarta
-nama:Alvin  tempat:Sukapura  tanggal:20  bulan:6 tahun:1999  jns_kelamin:L  darah:O  tinggi:165  berat:66  alamat:Bandung
-nama:Angga  tempat:Surabaya  tanggal:4  bulan:11 tahun:1999  jns_kelamin:L  darah:O  tinggi:175  berat:75  alamat:Bogor
-nama:Azizah  tempat:Bali  tanggal:19  bulan:3 tahun:2000  jns_kelamin:P  darah:AB  tinggi:160  berat:45  alamat:Yogyakarta
-nama:Habib  tempat:Medan  tanggal:3  bulan:11 tahun:1999  jns_kelamin:L  darah:O  tinggi:155  berat:66  alamat:Bogor
-nama:Hafiyyan  tempat:Bontang  tanggal:20  bulan:1 tahun:1999  jns_kelamin:L  darah:B  tinggi:165  berat:55  alamat:Bekasi
-nama:Haryanto  tempat:Bogor  tanggal:4  bulan:11 tahun:1998  jns_kelamin:L  darah:AB  tinggi:170  berat:66  alamat:Sukapura
-nama:Idul  tempat:Makassar  tanggal:20  bulan:7 tahun:1999  jns_kelamin:L  darah:A  tinggi:150  berat:55  alamat:Makassar
-nama:Insan  tempat:jakarta  tanggal:20  bulan:8 tahun:2000  jns_kelamin:L  darah:A  tinggi:170  berat:77  alamat:Asrama
-nama:Joko  tempat:Bandung  tanggal:30  bulan:1 tahun:1998  jns_kelamin:L  darah:A  tinggi:170  berat:65  alamat:BuahBatu
-nama:Jokowi  tempat:Surabaya  tanggal:3  bulan:11 tahun:1990  jns_kelamin:L  darah:AB  tinggi:166  berat:60  alamat:Solo
-nama:Mughni  tempat:Sumatra  tanggal:19  bulan:2 tahun:2000  jns_kelamin:L  darah:O  tinggi:175  berat:70  alamat:Bogor
-nama:Rendra  tempat:Cilacap  tanggal:20  bulan:4 tahun:1999  jns_kelamin:L  darah:AB  tinggi:154  berat:55  alamat:Bandung
-nama:Suharto  tempat:Bali  tanggal:9  bulan:12 tahun:1990  jns_kelamin:L  darah:B  tinggi:170  berat:77  alamat:Lombok
-nama:Vania  tempat:Jakarta  tanggal:7  bulan:12 tahun:1999  jns_kelamin:P  darah:A  tinggi:155  berat:45  alamat:Bekasi
-nama:Wayan  tempat:Bali  tanggal:4  bulan:11 tahun:2000  jns_kelamin:L  darah:O  tinggi:175  berat:66  alamat:Bandung
-nama:Zahra  tempat:Cikarang  tanggal:3  bulan:12 tahun:1999  jns_kelamin:P  darah:AB  tinggi:155  berat:60  alamat:Jatinangor
+Agi Yogaswara#Bekasi#17#3#1999#L#AB#170#77#Jatinangor#
+Al Mughni#Bogor#30#4#2000#L#AB#170#66#Buah Batu#
+Hafiyyan Abdul#Bontang#20#6#1999#L#AB#165#55#Cikarang#
+Irfan Nur Rahmad#Jombang#4#12#1999#L#AB#170#77#Gedung 5#
+Kenar Prayoga#Jakarta#2#12#1999#L#AB#170#66#Bandung#
+Rendra Seftian#Jambi#3#12#2000#L#AB#155#60#Kopo#
+Surya Muhammad#Bandung#31#2#2000#L#AB#170#77#Bandung Barat#
+Tiara Safitri#Boyolali#30#2#1960#P#O#150#60#Jl Ikan Tongkol#
+Tinton Aji Sadewo#Bogor#12#9#1999#L#AB#170#66#Jakarta#
+Yoffie Raka#Bekasi#12#9#2000#L#AB#170#66#Bandung#
+Yusuf ML#Aceh#12#1#1999#L#B#169#57#Aceh Barat#
