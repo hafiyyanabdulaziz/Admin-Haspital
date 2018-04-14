@@ -442,8 +442,9 @@ void main_menu() //menu setelah login
         printf("\t\t\t\t\t   | 4  |      Keluar       |\n");
         printf("\t\t\t\t\t   | 5  |    Pengaturan     |\n");
         printf("\t\t\t\t\t   | 6  |     Cek Kamar     |\n");
+        printf("\t\t\t\t\t   | 7  |     Pencarian     |\n");
         printf("\t\t\t\t\t    ---- -------------------\n");
-        if(pil>6) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
+        if(pil>7) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
         printf("Masukkan No. Pilihan= ");scanf("%d",&pil);fflush(stdin);
         switch(pil){
             case 1 : menu_pasien();break;
@@ -452,6 +453,30 @@ void main_menu() //menu setelah login
             case 4 : keluar();break;
             case 5 : pengaturan();break;
             case 6 : cek_kamar();break;
+            case 7 : pencarian();break;
+            default : goto menu;
+        }
+}
+
+void pencarian()
+{
+    pil=0;
+    menu:
+        intro();
+        printf("\t\t\t\t\t\t    PENCARIAN\n");
+        printf("\t\t\t\t\t    ___________________________\n");
+        printf("\t\t\t\t\t   | No |        Pilihan       |\n");
+        printf("\t\t\t\t\t   |---------------------------|\n");
+        printf("\t\t\t\t\t   | 1  |    Pencarian Angka   |\n");
+        printf("\t\t\t\t\t   | 2  |    Pencarian Huruf   |\n");
+        printf("\t\t\t\t\t   | 3  | kembali ke Main Menu |\n");
+        printf("\t\t\t\t\t    ---- ----------------------\n");
+        if(pil>3) printf("\t\t\t\tNOMOR YANG ANDA INGINKAN TIDAK ADA DALAM DAFTAR\n\n");
+        printf("Masukkan No. Pilihan= ");scanf("%d",&pil);fflush(stdin);
+        switch(pil){
+            case 1 : pencarian_int();break;
+            case 2 : pencarian_char();break;
+            case 3 : main_menu();break;
             default : goto menu;
         }
 }
@@ -565,23 +590,18 @@ void cek_kamar()
     main_menu();
 }
 
-/*  CARI PASIEN
-void cari_pasien()
+void pencarian_int()
 {
-    int cari_angka;
-    char cari_huruf[100];
-    i=0;
-    system("cls");
+    intro();
+    int cari_angka,o=0;
+    printf("   Masukkan Angka yang ingin dicari= ");scanf("%d",&cari_angka);
+    //PASIEN
     pasien=fopen("data_pasien.txt","r");
     if(!pasien){  //cek apakah filenya ada atau tidak
-        printf("FILE TIDAK DITEMUKAN\n");
-        printf("Apakah Anda Ingin Memasukkan Data (y/t)? ");scanf("%c",&o);fflush(stdin);
-        if(o=='y'||o=='Y')isi_data_pasien();
-        else main_menu();
+        printf("FILE PASIEN TIDAK DITEMUKAN\n");
     }
     else{
-        intro();
-        printf("Masukkan Data Yang Ingin Dicari: ");scanf("%d",&cari_angka);gets(cari_huruf);
+        i=0;
         printf("\t\t\t\t\t\t   DATA PASIEN\n");
         printf("   ________________________________________________________________________________________________________\n");
         printf("  |%-3s|%-20s|%-12s|%-9 %s|%-11s|%-3s|%-5s|%-5s|%-20s|\n","NO.","        NAMA","TEMPAT LAHIR","TGL LAHIR","JNS KELAMIN","GOL DARAH","TINGGI","BERAT","        ALAMAT");
@@ -589,14 +609,120 @@ void cari_pasien()
         while(!feof(pasien)){
             i++;
             fscanf(pasien,"%[^#]#%[^#]#%d#%d#%d#%c#%[^#]#%d#%d#%[^#]#\n",&p[i].nama,&p[i].tempat_lahir,&p[i].tanggal,&p[i].bulan,&p[i].tahun,&p[i].jns_kelamin,&p[i].darah,&p[i].tinggi,&p[i].berat,&p[i].alamat);
-            if(p[i].nama,p[i].tempat_lahir,p[i].tanggal,p[i].bulan,p[i].tahun,p[i].jns_kelamin,p[i].darah,p[i].tinggi,p[i].berat,p[i].alamat);
-            printf("  |%-3d| %-19s| %-11s|%-1 %d/%d/%d| %-10c| %-8s| %-5d| %-4d| %-19s|\n",i,p[i].nama,p[i].tempat_lahir,p[i].tanggal,p[i].bulan,p[i].tahun,p[i].jns_kelamin,p[i].darah,p[i].tinggi,p[i].berat,p[i].alamat);
+        }
+        for(x=1;x<=i;x++){
+            if((cari_angka==p[x].tanggal)||(cari_angka==p[x].bulan)||(cari_angka==p[x].tahun)||(cari_angka==p[x].tinggi)||(cari_angka==p[x].berat)){
+                o++;
+                printf("  |%-3d| %-19s| %-11s|%-1 %d/%d/%d| %-10c| %-8s| %-5d| %-4d| %-19s|\n",o,p[x].nama,p[x].tempat_lahir,p[x].tanggal,p[x].bulan,p[x].tahun,p[x].jns_kelamin,p[x].darah,p[x].tinggi,p[x].berat,p[x].alamat);
+            }
+        }
+        if(o==0){
+            printf("  |\t\t\t\t\t%-67s|\n","DATA YANG DICARI TIDAK DITEMUKAN");
         }
         printf("   --------------------------------------------------------------------------------------------------------\n");
         fclose(pasien);
-        printf("Press any key to Main Menu.");
+    }
+    //DOKTER
+    dokter=fopen("data_dokter.txt","r");
+    if(!dokter){  //cek apakah filenya ada atau tidak
+        printf("FILE DOKTER TIDAK DITEMUKAN\n");
+    }
+    else{
+        i=0;
+        int e=0;
+        printf("\n\t\t\t\t\t\t   DATA DOKTER\n");
+        printf("   ____________________________________________________________________________________________________________\n");
+        printf("  |%-3s|%-22s|%-12s|%-9 %s|%-11s|%-11s|%-16s|%-16s|\n","NO.","        NAMA","TEMPAT LAHIR","TGL LAHIR","JNS KELAMIN"," SPESIALIS","     LULUSAN","     ALAMAT");
+        printf("   ------------------------------------------------------------------------------------------------------------\n");
+        while(!feof(dokter)){
+            i++;
+            fscanf(dokter,"%[^#]#%[^#]#%d#%d#%d#%c#%[^#]#%[^#]#%[^#]#\n",&d[i].nama,&d[i].tempat_lahir,&d[i].tanggal,&d[i].bulan,&d[i].tahun,&d[i].jns_kelamin,&d[i].spesialis,&d[i].lulusan,&d[i].alamat);
+        }
+        for(x=1;x<=i;x++){
+            if((cari_angka==d[x].tanggal)||(cari_angka==d[x].bulan)||(cari_angka==d[x].tahun)){
+                o++;
+                e++;
+                printf("  |%-3d| Dr. %-17s| %-11s|%-1 %d/%d/%d| %-10c| %-10s| %-15s| %-15s|\n",o,d[x].nama,d[x].tempat_lahir,d[x].tanggal,d[x].bulan,d[x].tahun,d[x].jns_kelamin,d[x].spesialis,d[x].lulusan,d[x].alamat);
+            }
+        }
+        if(e==0){
+            printf("  |\t\t\t\t\t%-71s|\n","DATA YANG DICARI TIDAK DITEMUKAN");
+        }
+        printf("   ------------------------------------------------------------------------------------------------------------\n");
+        fclose(dokter);
+        printf("Press any key to Menu Pencarian.");
         getch();
-        main_menu();
+        pencarian();
+    }
+
+
+}
+
+void pencarian_char()
+{
+    intro();
+    int o=0;
+    char cari_huruf[100];
+    printf("   Masukkan String yang ingin dicari= ");gets(cari_huruf);
+    //PASIEN
+    pasien=fopen("data_pasien.txt","r");
+    if(!pasien){  //cek apakah filenya ada atau tidak
+        printf("FILE PASIEN TIDAK DITEMUKAN\n");
+    }
+    else{
+        i=0;
+        printf("\t\t\t\t\t\t   DATA PASIEN\n");
+        printf("   ________________________________________________________________________________________________________\n");
+        printf("  |%-3s|%-20s|%-12s|%-9 %s|%-11s|%-3s|%-5s|%-5s|%-20s|\n","NO.","        NAMA","TEMPAT LAHIR","TGL LAHIR","JNS KELAMIN","GOL DARAH","TINGGI","BERAT","        ALAMAT");
+        printf("   --------------------------------------------------------------------------------------------------------\n");
+        while(!feof(pasien)){
+            i++;
+            fscanf(pasien,"%[^#]#%[^#]#%d#%d#%d#%c#%[^#]#%d#%d#%[^#]#\n",&p[i].nama,&p[i].tempat_lahir,&p[i].tanggal,&p[i].bulan,&p[i].tahun,&p[i].jns_kelamin,&p[i].darah,&p[i].tinggi,&p[i].berat,&p[i].alamat);
+        }
+
+        for(x=1;x<=i;x++){
+            if((strcmp(cari_huruf,p[x].nama)==0)||(strcmp(cari_huruf,p[x].tempat_lahir)==0)||(strcmp(cari_huruf,p[x].darah)==0)||(strcmp(cari_huruf,p[x].alamat)==0)){
+                o++;
+                printf("  |%-3d| %-19s| %-11s|%-1 %d/%d/%d| %-10c| %-8s| %-5d| %-4d| %-19s|\n",o,p[x].nama,p[x].tempat_lahir,p[x].tanggal,p[x].bulan,p[x].tahun,p[x].jns_kelamin,p[x].darah,p[x].tinggi,p[x].berat,p[x].alamat);
+            }
+        }
+        if(o==0){
+            printf("  |\t\t\t\t\t%-67s|\n","DATA YANG DICARI TIDAK DITEMUKAN");
+        }
+
+        printf("   --------------------------------------------------------------------------------------------------------\n");
+        fclose(pasien);
+    }
+    //DOKTER
+    dokter=fopen("data_dokter.txt","r");
+    if(!dokter){  //cek apakah filenya ada atau tidak
+        printf("FILE DOKTER TIDAK DITEMUKAN\n");
+    }
+    else{
+        i=0;
+        int e=0;
+        printf("\n\t\t\t\t\t\t   DATA DOKTER\n");
+        printf("   ____________________________________________________________________________________________________________\n");
+        printf("  |%-3s|%-22s|%-12s|%-9 %s|%-11s|%-11s|%-16s|%-16s|\n","NO.","        NAMA","TEMPAT LAHIR","TGL LAHIR","JNS KELAMIN"," SPESIALIS","     LULUSAN","     ALAMAT");
+        printf("   ------------------------------------------------------------------------------------------------------------\n");
+        while(!feof(dokter)){
+            i++;
+            fscanf(dokter,"%[^#]#%[^#]#%d#%d#%d#%c#%[^#]#%[^#]#%[^#]#\n",&d[i].nama,&d[i].tempat_lahir,&d[i].tanggal,&d[i].bulan,&d[i].tahun,&d[i].jns_kelamin,&d[i].spesialis,&d[i].lulusan,&d[i].alamat);
+        }
+        for(x=1;x<=i;x++){
+            if((strcmp(cari_huruf,d[x].nama)==0)||(strcmp(cari_huruf,d[x].tempat_lahir)==0)||(strcmp(cari_huruf,d[x].spesialis)==0)||(strcmp(cari_huruf,d[x].lulusan)==0)||(strcmp(cari_huruf,p[x].alamat)==0)){
+                o++;
+                e++;
+                printf("  |%-3d| Dr. %-17s| %-11s|%-1 %d/%d/%d| %-10c| %-10s| %-15s| %-15s|\n",o,d[x].nama,d[x].tempat_lahir,d[x].tanggal,d[x].bulan,d[x].tahun,d[x].jns_kelamin,d[x].spesialis,d[x].lulusan,d[x].alamat);
+            }
+        }
+        if(e==0){
+            printf("  |\t\t\t\t\t%-71s|\n","DATA YANG DICARI TIDAK DITEMUKAN");
+        }
+        printf("   ------------------------------------------------------------------------------------------------------------\n");
+        fclose(dokter);
+        printf("Press any key to Menu Pencarian.");
+        getch();
+        pencarian();
     }
 }
-*/
